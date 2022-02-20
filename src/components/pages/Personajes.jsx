@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 import { CharacterItem } from "../characters/CharactersItems";
@@ -21,32 +21,34 @@ export function Personajes() {
   }
 
   //4
-  function load(searching) {
-    if (searching) {
-      setNumberPage(1);
-    }
-    axios
-      .get(
-        `https://rickandmortyapi.com/api/character/?page=${
-          searching ? "1" : numberPage
-        }&name=${search}`
-      )
-      .then((res) => {
-        setCharacterList(res.data);
-        setPageConfig(res.data.info);
-      });
-  }
+  const load = useCallback(
+    (searching) => {
+      if (searching) {
+        setNumberPage(1);
+      }
+      axios
+        .get(
+          `https://rickandmortyapi.com/api/character/?page=${
+            searching ? "1" : numberPage
+          }&name=${search}`
+        )
+        .then((res) => {
+          setCharacterList(res.data);
+          setPageConfig(res.data.info);
+        });
+    },
+    [numberPage, search]
+  );
 
   useEffect(() => {
     if (numberPage) {
       load();
     }
-  }, [numberPage]);
+  }, [numberPage, load]);
 
   function handlePageChange(pageNumber) {
     setNumberPage(pageNumber);
   }
-  console.log(search);
 
   return (
     <div>

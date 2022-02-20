@@ -8,13 +8,11 @@ export function Personaje() {
 
   const { id } = useParams();
 
-  const URLCHARACTER = `https://rickandmortyapi.com/api/character/${id}`;
-
   useEffect(() => {
-    axios.get(URLCHARACTER).then((res) => {
+    axios.get(`https://rickandmortyapi.com/api/character/${id}`).then((res) => {
       setCharacter(res.data);
     });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (character) {
@@ -26,7 +24,6 @@ export function Personaje() {
       });
     }
   }, [character]);
-  console.log(episode);
   return (
     <div className="container text-dark">
       <div className="  card mb-3">
