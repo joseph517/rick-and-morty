@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import './App.css';
 import Characters from './component/Characters';
 import imgRickMorty from "./img/rick-morty.png"
@@ -10,17 +10,16 @@ function App() {
     const characterApi = await api.json()
     setCharacters(characterApi.results)
   }
-  console.log(characters)
+  // console.log(characters)
   return (
     <div className="App">
       <header className="App-header">
         <h1 className='tittle'> Rick and Morty </h1>
 
-        {characters ? <Characters /> :
-          <>
-            <img src={imgRickMorty} alt='Rick anf Morty' className='img-home' />
-            <button onClick={reqApi} className='btn-search' >Buscar personajes</button>
-          </>}
+        {characters ? <Characters characters={characters} />
+          : <Fragment><img src={imgRickMorty} alt='RickAndMorty' className='img-home' />
+            <button onClick={reqApi} className='btn-search'> Buscar personajes</button></Fragment>
+        }
 
       </header>
     </div>
