@@ -1,11 +1,19 @@
+import { useNavigate } from "react-router-dom"
 
 const Characters = (props) => {
+
+    let navigate = useNavigate()
     const { characters } = props
-    console.log(characters)
+
+    const onClick = () => {
+        navigate('/')
+    }
 
     return (
         <div className="characters">
-            <span className='back-home'>Home</span>
+            <div>
+                <button onClick={onClick} className="btn-search">Home</button>
+            </div>
             <div className="container-characters">
                 {characters.map((character, index) => (
                     <div className="character-container" key={index}>
@@ -32,9 +40,16 @@ const Characters = (props) => {
                             <p>
                                 <span className="text-grey">Episodios:{character.episode.length}</span>
                             </p>
+                            <p>
+                                <span className="text-grey">Especie:</span>
+                                <span>{character.species}</span>
+                            </p>
                         </div>
                     </div>
                 ))}
+            </div>
+            <div>
+                <button onClick={onClick} className='btn-search'>Home</button>
             </div>
         </div>
     )

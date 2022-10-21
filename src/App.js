@@ -1,27 +1,20 @@
-import { useState, Fragment } from 'react';
 import './App.css';
-import Characters from './component/Characters';
-import imgRickMorty from "./img/rick-morty.png"
+import Characters from './pages/CharactersPages';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home';
+import EpisodesPages from './pages/EpisodesPages';
 
 function App() {
-  const [characters, setCharacters] = useState(null)
-  const reqApi = async () => {
-    const api = await fetch('https://rickandmortyapi.com/api/character')
-    const characterApi = await api.json()
-    setCharacters(characterApi.results)
-  }
-  // console.log(characters)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className='tittle'> Rick and Morty </h1>
+    <div className="App-header">
 
-        {characters ? <Characters characters={characters} />
-          : <Fragment><img src={imgRickMorty} alt='RickAndMorty' className='img-home' />
-            <button onClick={reqApi} className='btn-search'> Buscar personajes</button></Fragment>
-        }
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/characters' element={<Characters />} />
+        <Route path='/episodes' element={<EpisodesPages />} />
+      </Routes>
 
-      </header>
     </div>
   );
 }
