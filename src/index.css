@@ -60,6 +60,17 @@ body {
   border-radius: 10px;
   align-items: flex-start;
 }
+.card-title, .card-body{
+  border: none;
+}
+.episode-container {
+  background: #212529;
+  height: 200;
+  width: 300px;
+  margin: 20px 10px;
+  border-radius: 10px;
+  align-items:center;
+}
 
 .character-container h3 {
   margin: 10px 0;

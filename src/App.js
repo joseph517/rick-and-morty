@@ -1,6 +1,6 @@
 import './App.css';
 import Characters from './pages/CharactersPages';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
 import EpisodesPages from './pages/EpisodesPages';
 

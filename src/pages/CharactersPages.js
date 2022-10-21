@@ -13,9 +13,9 @@ const CharactersPages = () => {
     const reqApi = async () => {
         const api = await fetch('https://rickandmortyapi.com/api/character')
         const characterApi = await api.json()
+        console.log(characterApi)
         setCharacters(characterApi.results)
     }
-    console.log(characters)
     return (
         <div className='App'>
             {!characters ? <p></p> :
