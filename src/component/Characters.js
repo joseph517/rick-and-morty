@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
+
+
 const Characters = (props) => {
 
     let navigate = useNavigate()
