@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Characters from '../component/Characters'
 import Pagination from "react-js-pagination";
+import Search from '../component/Search';
 
 const CharactersPages = () => {
     const [characters, setCharacters] = useState([])
     const [numberPage, setNumberPage] = useState(1);
     const [pageConfig, setPageConfig] = useState({});
+    const [search, setSearch] = useState("");
 
+    function actualice(event) {
+        setSearch(event.target.value);
+    }
 
+    function onSearh() {
+        reqApi(true);
+    }
 
 
     useEffect(() => {
@@ -16,6 +24,8 @@ const CharactersPages = () => {
     }, [numberPage])
 
     const reqApi = async () => {
+
+
         const api = await fetch(`https://rickandmortyapi.com/api/character/?page=${numberPage}`)
         const characterApi = await api.json()
         let itemPages = Math.round(characterApi.info.count / characterApi.info.pages)
@@ -35,7 +45,13 @@ const CharactersPages = () => {
                 <>
                     <h1 className='title'>Personajes</h1>
                     <div>
+                        <Search
+                            onInputChange={actualice}
+                            valorInput={search}
+                            onSubmit={onSearh}
+                        />
                         <Characters characters={characters} />
+
                     </div>
                 </>}
             <div>
