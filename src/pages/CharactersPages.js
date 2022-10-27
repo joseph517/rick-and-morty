@@ -14,26 +14,33 @@ const CharactersPages = () => {
     }
 
     function onSearh() {
-        reqApi(true);
-    }
+        if (search) {
+            console.log('first', numberPage)
 
+            setNumberPage(1)
+
+            console.log('numberPage', numberPage)
+            // reqApi()
+        }
+    }
 
     useEffect(() => {
         reqApi()
 
     }, [numberPage])
 
-    const reqApi = async () => {
+    const reqApi = () => {
 
-
-        const api = await fetch(`https://rickandmortyapi.com/api/character/?page=${numberPage}`)
-        const characterApi = await api.json()
-        let itemPages = Math.round(characterApi.info.count / characterApi.info.pages)
-        setPageConfig({ ...characterApi.info, itemPages })
-        setCharacters(characterApi.results)
+        console.log(numberPage)
+        const api = fetch(`https://rickandmortyapi.com/api/character/?page=${numberPage}&name=${search}`
+        )
+            .then((response) => response.json())
+            .then(characterApi => {
+                let itemPages = Math.round(characterApi.info.count / characterApi.info.pages)
+                setPageConfig({ ...characterApi.info, itemPages })
+                setCharacters(characterApi.results)
+            })
     }
-
-
 
     function handlePageChange(pageNumber) {
         setNumberPage(pageNumber);
@@ -51,7 +58,6 @@ const CharactersPages = () => {
                             onSubmit={onSearh}
                         />
                         <Characters characters={characters} />
-
                     </div>
                 </>}
             <div>

@@ -7,8 +7,6 @@ const Search = ({ valorInput, onInputChange, onSubmit }) => {
             onSubmit();
         }
     }
-    console.log(valorInput)
-
 
     return (
         <div className="d-flex justify-content-end">
