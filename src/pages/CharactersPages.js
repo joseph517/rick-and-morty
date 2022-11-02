@@ -15,12 +15,7 @@ const CharactersPages = () => {
 
     function onSearh() {
         if (search) {
-            console.log('first', numberPage)
-
             setNumberPage(1)
-
-            console.log('numberPage', numberPage)
-            // reqApi()
         }
     }
 
@@ -30,8 +25,6 @@ const CharactersPages = () => {
     }, [numberPage])
 
     const reqApi = () => {
-
-        console.log(numberPage)
         const api = fetch(`https://rickandmortyapi.com/api/character/?page=${numberPage}&name=${search}`
         )
             .then((response) => response.json())
